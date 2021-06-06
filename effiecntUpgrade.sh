@@ -2,6 +2,8 @@ set -x
 
 $(apt list --upgradeable | grep -v "Listing..." > /tmp/upgrade.tmp)
 
+[ -d $HOME/logs ] || mkdir $HOME/logs
+
 LENGTH=$(cat /tmp/upgrade.tmp | wc -l)
 
 
@@ -23,4 +25,4 @@ apt autoremove -y
 
 fi
 
-
+#apt autoremove -y
