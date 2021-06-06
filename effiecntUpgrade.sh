@@ -6,7 +6,34 @@ $(apt list --upgradeable | grep -v "Listing..." > /tmp/upgrade.tmp)
 
 LENGTH=$(cat /tmp/upgrade.tmp | wc -l)
 
+if [ $LENGTH -eq 0 ]
+then
 
+cat << EOF >> $HOME/logs/upgrade.log
+$(timedatectl | grep Local | awk '{print $4 " " $5 " "$6 }')
+
+$(cat /tmp/upgrade.tmp)
+
+There are 0 Packages to upgrade
+
+EOF
+fi
+
+if [ $LENGTH -eq 1 ]
+then
+
+cat << EOF >> $HOME/logs/upgrade.log
+$(timedatectl | grep Local | awk '{print $4 " " $5 " "$6 }')
+
+$(cat /tmp/upgrade.tmp)
+
+There is 1 package to upgrade
+
+EOF
+fi
+
+if [ $LENGTH -gt 1 ]
+then
 
 cat << EOF >> $HOME/logs/upgrade.log
 $(timedatectl | grep Local | awk '{print $4 " " $5 " "$6 }')
@@ -16,6 +43,7 @@ $(cat /tmp/upgrade.tmp)
 There are $LENGTH Packages to upgrade
 
 EOF
+fi
 
 if [ $LENGTH -gt 0 ]
 then
@@ -25,4 +53,4 @@ apt autoremove -y
 
 fi
 
-#apt autoremove -y
+apt autoremove -y
