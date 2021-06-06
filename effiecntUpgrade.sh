@@ -1,5 +1,7 @@
 set -x
 
+crontab -l | grep "/home/austin/git/upgrade/effiecntUpgrade.sh"
+
 $(apt list --upgradeable | grep -v "Listing..." > /tmp/upgrade.tmp)
 
 [ -d $HOME/logs ] || mkdir $HOME/logs
