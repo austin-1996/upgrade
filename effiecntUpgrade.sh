@@ -19,8 +19,8 @@ if [ $LENGTH -gt 0 ]
 then
 
 apt upgrade -y
+apt autoremove -y
 
 fi
 
 
-apt autoremove -y
