@@ -55,9 +55,14 @@ fi
 if [ $LENGTH -gt 0 ]
 then
 
-apt upgrade -y
+
+AUTOREMOVE=$(apt upgrade -y 2>&1 | grep "to remove" | awk '{print $3}')
+
+if [ $AUTOREMOVE -gt 0 ]
+then
 apt autoremove -y
+fi
 
 fi
 
-apt autoremove -y
+
