@@ -1,10 +1,10 @@
-set -x
+#set -x
 
 HOMELOG=$(cat /etc/passwd | grep 1000 | cut -d : -f 1)
 
 HOME=/home/$HOMELOG
 
-crontab -l | grep "/home/austin/git/upgrade/effiecntUpgrade.sh"
+#crontab -l | grep "/home/austin/git/upgrade/effiecntUpgrade.sh"
 
 
 $(apt list --upgradeable | grep -v "Listing..." > /tmp/upgrade.txt)
@@ -24,6 +24,7 @@ $(cat /tmp/upgrade.tmp)
 There are 0 Packages to upgrade
 
 EOF
+exit
 fi
 
 if [ $LENGTH -eq 1 ]
