@@ -7,11 +7,11 @@ HOME=/home/$HOMELOG
 crontab -l | grep "/home/austin/git/upgrade/effiecntUpgrade.sh"
 
 
-$(apt list --upgradeable | grep -v "Listing..." > /tmp/upgrade.tmp)
+$(apt list --upgradeable | grep -v "Listing..." > /tmp/upgrade.txt)
 
 [ -d $HOME/logs ] || mkdir $HOME/logs
 
-LENGTH=$(cat /tmp/upgrade.tmp | wc -l)
+LENGTH=$(cat /tmp/upgrade.txt | wc -l)
 
 if [ $LENGTH -eq 0 ]
 then
